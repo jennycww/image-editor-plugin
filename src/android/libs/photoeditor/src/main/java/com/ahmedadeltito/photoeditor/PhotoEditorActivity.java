@@ -330,7 +330,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void returnBackWithSavedImage() {
+    private void returnBackWithSavedImage(String x) {
         updateView(View.GONE);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -348,6 +348,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 Intent returnIntent = new Intent();
                 //returnIntent.putExtra("imagePath", photoEditorSDK.saveImage("PhotoEditorSDK", imageName));
                 returnIntent.putExtra("imagePath", photoEditorSDK.saveImage( PhotoEditorActivity.this.getCacheDir(), imageName));
+                returnIntent.putExtra("saveImageFunction",x);
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
@@ -367,7 +368,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.done_drawing_tv) {
             updateBrushDrawingView(false);
         } else if (v.getId() == R.id.save_tv || v.getId() == R.id.save_text_tv) {
-            returnBackWithSavedImage();
+            returnBackWithSavedImage("1");
         } else if (v.getId() == R.id.clear_all_tv || v.getId() == R.id.clear_all_text_tv) {
             clearAllViews();
         } else if (v.getId() == R.id.undo_text_tv || v.getId() == R.id.undo_tv) {
@@ -375,7 +376,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         } else if (v.getId() == R.id.erase_drawing_tv) {
             eraseDrawing();
         } else if (v.getId() == R.id.go_to_next_screen_tv) {
-            returnBackWithSavedImage();
+            returnBackWithSavedImage("0");
         }
     }
 
