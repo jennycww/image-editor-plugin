@@ -55,11 +55,17 @@ public class ImageEditorPlugin extends CordovaPlugin {
             case android.app.Activity.RESULT_OK:
                 if (requestCode == IntentsDefinition.EDITOR_INTENT_CALLED){
                     String imagePath = intent.getStringExtra("imagePath");
-
+                    String getSaveType = intent.getStringExtra("saveImageFunction");
                     String base64 = com.outsystems.imageeditorplugin.Utils.FileUtils.getBase64FromPath(imagePath);
 
                     if (base64 != null && base64.length() > 0) {
+                        if(getSaveType.equals("1")){
+
+                        callbackContext.success(base64,getSaveType);
+                        }else{
+                        
                         callbackContext.success(base64);
+                        }
                     } else {
                         callbackContext.error("Expected one non-empty string argument.");
                     }
