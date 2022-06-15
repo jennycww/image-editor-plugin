@@ -61,7 +61,7 @@ public class ImageEditorPlugin extends CordovaPlugin {
                     if (base64 != null && base64.length() > 0) {
                         if(getSaveType.equals("1")){
 
-                        callbackContext.success(base64,getSaveType);
+                        callbackContext.success("SAVE;"+base64);
                         }else{
                         
                         callbackContext.success(base64);
